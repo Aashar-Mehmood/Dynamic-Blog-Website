@@ -1,0 +1,180 @@
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: black;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+header {
+  background-color: #eee;
+  padding: 40px 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+header h2 {
+  margin: 0;
+}
+
+header nav {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
+}
+
+header nav a {
+  font-size: 1.2rem;
+  position: relative;
+}
+
+header nav a::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  background-color: #000;
+  -webkit-transform-origin: left;
+  transform-origin: left;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: -webkit-transform 0.4s ease-out;
+  transition: -webkit-transform 0.4s ease-out;
+  transition: transform 0.4s ease-out;
+  transition: transform 0.4s ease-out, -webkit-transform 0.4s ease-out;
+}
+
+header nav a:hover::after {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+footer {
+  background-color: #000;
+  color: white;
+  text-align: center;
+  padding: 40px 0;
+}
+
+main {
+  background-color: #47c588;
+  padding: 20px;
+}
+
+main h1 {
+  text-align: center;
+}
+
+main form {
+  width: 40%;
+  margin: 40px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: column;
+  flex-flow: column;
+  min-height: 450px;
+  border: 1px solid wheat;
+  padding: 40px 25px;
+  border-radius: 5px;
+}
+
+main form h2 {
+  text-align: center;
+  color: white;
+}
+
+main form label {
+  margin-top: 25px;
+  margin-bottom: 2px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+main form input {
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  padding-left: 15px;
+}
+
+main form input::-webkit-input-placeholder {
+  color: red;
+}
+
+main form input:-ms-input-placeholder {
+  color: red;
+}
+
+main form input::-ms-input-placeholder {
+  color: red;
+}
+
+main form input::placeholder {
+  color: red;
+}
+
+main form input.error {
+  border: 2px solid red;
+}
+
+main form span.error {
+  color: red;
+}
+
+main form button {
+  display: inline-block;
+  padding: 12px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  font-size: 18px;
+}
+main form button.secondary {
+  border: 1px solid black;
+  background-color: transparent;
+}
+
+main form div {
+  margin-top: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+main form div a {
+  margin-top: 10px;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=form.css.map */

@@ -1,0 +1,148 @@
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html,
+body {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: black;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+header {
+  background-color: #eee;
+  padding: 40px 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+header h2 {
+  margin: 0;
+}
+
+header nav {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+header nav a {
+  font-size: 1.2rem;
+  position: relative;
+}
+
+header nav a::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  background-color: #000;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: -webkit-transform 0.4s ease-out;
+  transition: -webkit-transform 0.4s ease-out;
+  transition: transform 0.4s ease-out;
+  transition: transform 0.4s ease-out, -webkit-transform 0.4s ease-out;
+}
+
+header nav a:hover::after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+
+footer {
+  background-color: #000;
+  color: white;
+  text-align: center;
+  padding: 40px 0;
+}
+
+main {
+  background: #47c588;
+  padding: 30px 50px;
+}
+
+main h1 {
+  text-align: center;
+}
+
+main form {
+  width: 60%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+
+main form div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+
+main form div label {
+  margin: 20px 0 3px 0;
+  font-size: 1.5rem;
+}
+
+main form div input,
+main form div textarea {
+  border-radius: 5px;
+  border: none;
+  font-size: 1.3rem;
+}
+
+main form div input {
+  height: 40px;
+}
+
+main form div textarea {
+  height: 20rem;
+}
+
+main form input[type="file"] {
+  margin-top: 20px;
+}
+
+main form button {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  width: 10rem;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+/*# sourceMappingURL=create.css.map */
