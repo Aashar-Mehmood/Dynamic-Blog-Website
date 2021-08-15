@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +32,6 @@
       </div>
       <h2 id="message"></h2>
     </form>
-
   </main>
   <?php
   include_once("includes/footer.php")

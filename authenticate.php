@@ -35,8 +35,7 @@ if ($error[0] == 'false' && $error[1] == 'false' && $error[2] == 'false') {
       session_start();
       $_SESSION["name"] = $data[0];
       $_SESSION["email"] = $data[1];
-      echo "Login Successful";
-      header("location:display.php?message=logInSuccess");
+      $submit = true;
     }
   }
   mysqli_stmt_close($stmt);
@@ -47,12 +46,14 @@ if ($error[0] == 'false' && $error[1] == 'false' && $error[2] == 'false') {
 <script>
 var submitStatus = "<?php echo $submit ?>";
 var inputs = document.querySelectorAll("input");
-if (submitStatus == "true") {
+if (submitStatus == true) {
   inputs.forEach(element => {
-    element.value = "";
+    element.value = " ";
     hideErr(element);
   });
-  exit(0);
+  alert("Login Successful");
+  window.close("login.php");
+  window.open("display.php", "_blank");
 }
 inputs.forEach(element => {
   hideErr(element);

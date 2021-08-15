@@ -54,9 +54,8 @@ if (
 
 <script>
 var submitStatus = "<?php echo $submit ?>";
-console.log(submitStatus);
 var inputs = document.querySelectorAll("input");
-if (submitStatus == "true") {
+if (submitStatus == "true" || submitStatus == "1") {
   inputs.forEach(element => {
     element.value = " ";
     hideErr(element);

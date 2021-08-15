@@ -132,6 +132,11 @@ main section p {
   width: 75%;
 }
 
+main section span {
+  color: #5fabee;
+  font-size: 1.2rem;
+}
+
 main aside {
   width: 37%;
   padding: 0 30px;

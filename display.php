@@ -20,18 +20,30 @@ session_start();
     echo "Unable to connect to databse!!";
     exit();
   }
-  $data = mysqli_query($conn, "SELECT * FROM `myblog_tb` LIMIT 2");
+  $BlogInfo = mysqli_query(
+    $conn,
+    "SELECT `Title`, `Description`, `Image_Path`, `Time`, `Name`
+    FROM `myblog_tb`
+    INNER JOIN `blog_author_tb` 
+    ON myblog_tb.Author_Id = blog_author_tb.Id
+    LIMIT 2;"
+  );
   $data2 = mysqli_query($conn, "SELECT * FROM `myblog_tb` LIMIT 6");
   ?>
   <main>
     <h1>Latest Blogs</h1>
     <section id='blog_section'>
       <?php
-      while ($row = mysqli_fetch_array($data)) {
+      while ($row = mysqli_fetch_array($BlogInfo)) {
         echo "<div class='container'>";
         echo "<img src='$row[2]' />";
         echo "<h1> $row[0] </h1>";
         echo "<p> $row[1] </p>";
+        echo "<span><strong>Author : </strong></span>";
+        echo "<span>$row[4]</span>";
+        echo "<br>";
+        echo "<br>";
+        echo "<span>$row[3]</span>";
         echo "</div>";
       }
       ?>
