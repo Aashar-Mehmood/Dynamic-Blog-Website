@@ -8,8 +8,7 @@ $data = mysqli_query(
   FROM `myblog_tb`
   INNER JOIN `blog_author_tb` 
   ON myblog_tb.Author_Id = blog_author_tb.Id
-  LIMIT 
-  WHERE `Id` = $blogId; "
+  WHERE myblog_tb.Id = '$blogId';"
 );
 $row = mysqli_fetch_array($data);
 echo "<div class='container'>";

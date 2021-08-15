@@ -8,6 +8,8 @@
 html,
 body {
   font-size: 16px;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -80,6 +82,7 @@ footer {
 }
 
 main {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -95,6 +98,11 @@ main {
 main > h1,
 main > div {
   width: 100%;
+}
+
+main > div {
+  position: absolute;
+  bottom: 100px;
 }
 
 main > div button {

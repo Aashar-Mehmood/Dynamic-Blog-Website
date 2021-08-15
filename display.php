@@ -26,9 +26,14 @@ session_start();
     FROM `myblog_tb`
     INNER JOIN `blog_author_tb` 
     ON myblog_tb.Author_Id = blog_author_tb.Id
+    ORDER BY myblog_tb.Time DESC
     LIMIT 2;"
   );
-  $data2 = mysqli_query($conn, "SELECT * FROM `myblog_tb` LIMIT 6");
+  $data2 = mysqli_query(
+    $conn,
+    "SELECT `Title`, `Description`, `Id` 
+    FROM `myblog_tb` LIMIT 6"
+  );
   ?>
   <main>
     <h1>Latest Blogs</h1>
@@ -56,7 +61,7 @@ session_start();
         echo "<div>";
         echo "<h1> $row[0] </h1>";
         echo "<p> $shortPara </p>";
-        echo "<button id = '$row[3]' name = 'btn$row[3]'>Read More</button>";
+        echo "<button id = '$row[2]' name = 'btn$row[2]'>Read More</button>";
         echo "</div>";
       }
       ?>

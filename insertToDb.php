@@ -28,11 +28,11 @@ if (
     }
     $inserted = mysqli_query(
       $conn,
-      "INSERT INTO `myblog_tb` (`Title`, `Description`, `Image_Path`, `Author_Id`) VALUES ('$title', '$desc', '$imgPath', '$authorId');"
+      "INSERT INTO `myblog_tb` (`Title`, `Description`, `Image_Path`, `Author_Id`) VALUES ('$title', '$desc', '$imgPath', $authorId);"
     );
     if (!$inserted) {
-      // echo "Error" . mysqli_error($conn);
-      backToCreate("Unable to insert into database");
+      echo "Error" . mysqli_error($conn);
+      // backToCreate("Unable to insert into database");
     } else {
       mysqli_close($conn);
       backToCreate("Data inserted in the database");

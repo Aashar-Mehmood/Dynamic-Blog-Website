@@ -8,6 +8,7 @@ $data = mysqli_query(
   FROM `myblog_tb`
   INNER JOIN `blog_author_tb` 
   ON myblog_tb.Author_Id = blog_author_tb.Id
+  ORDER BY myblog_tb.Time DESC
   LIMIT $limit;"
 );
 while ($row = mysqli_fetch_array($data)) {
