@@ -1,14 +1,13 @@
 <?php
 include("includes/dbConnection.php");
-$blogId = $_POST["blogId"];
+(int)$blogId = $_POST["blogId"];
+
 
 $data = mysqli_query(
   $conn,
-  "SELECT `Title`, `Description`, `Image_Path`, `Time`, `Name`
-  FROM `myblog_tb`
-  INNER JOIN `blog_author_tb` 
-  ON myblog_tb.Author_Id = blog_author_tb.Id
-  WHERE myblog_tb.Id = '$blogId';"
+  "SELECT `title`, `description`, `image`, `date`, `author`
+  FROM `blog_data`
+  WHERE blog_data.id = $blogId;"
 );
 $row = mysqli_fetch_array($data);
 echo "<div class='container'>";

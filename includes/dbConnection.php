@@ -2,7 +2,7 @@
 $host = "127.0.0.1";
 $user = "root";
 $pwd = "";
-$db = "myblog_db";
+$db = "myblog";
 
 $conn = mysqli_connect($host, $user, $pwd, $db);
 if (!$conn) {

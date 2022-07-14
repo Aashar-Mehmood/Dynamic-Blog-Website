@@ -1,7 +1,7 @@
 <header>
   <h2>Blog Website</h2>
   <nav>
-    <a href="display.php">Home</a>
+    <a href="index.php">Home</a>
     <?php
     if (isset($_SESSION["name"])) {
       echo "<a href='logout.php'>Logout</a>";

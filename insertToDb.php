@@ -18,7 +18,7 @@ if (
       WHERE `Name` = '$authorName'
       LIMIT 1; "
     );
-    $authorId = mysqli_fetch_array($authorInfo)[0];
+    $author = $_SESSION['name'];
     $name = basename($_FILES["img"]["name"]);
     $imgPath = "uploads/" . $name;
     $moved = move_uploaded_file($_FILES["img"]["tmp_name"], $imgPath);
@@ -28,14 +28,14 @@ if (
     }
     $inserted = mysqli_query(
       $conn,
-      "INSERT INTO `myblog_tb` (`Title`, `Description`, `Image_Path`, `Author_Id`) VALUES ('$title', '$desc', '$imgPath', $authorId);"
+      "INSERT INTO `blog_data` (`title`, `description`, `image`, `author`) VALUES ('$title', '$desc', '$imgPath', '$author');"
     );
     if (!$inserted) {
       echo "Error" . mysqli_error($conn);
       // backToCreate("Unable to insert into database");
     } else {
       mysqli_close($conn);
-      backToCreate("Data inserted in the database");
+      backToCreate("Blog Created Successfully");
     }
   }
 } else {

@@ -2,4 +2,4 @@
 session_start();
 unset($_SESSION["name"]);
 unset($_SESSION["email"]);
-header("location:display.php");
+header("location:index.php");

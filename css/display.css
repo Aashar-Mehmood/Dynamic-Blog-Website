@@ -125,8 +125,7 @@ main section h2 {
 
 main section img {
   width: 100%;
-  max-height: 400px;
-  border: 1px solid black;
+  width: 280px;
 }
 
 main section div {

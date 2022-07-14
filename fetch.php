@@ -1,14 +1,12 @@
 <?php
 include_once("includes/dbConnection.php");
-$limit = $_POST["limit"];
+$limit = 2;
 
 $data = mysqli_query(
   $conn,
-  "SELECT `Title`, `Description`, `Image_Path`, `Time`, `Name`
-  FROM `myblog_tb`
-  INNER JOIN `blog_author_tb` 
-  ON myblog_tb.Author_Id = blog_author_tb.Id
-  ORDER BY myblog_tb.Time DESC
+  "SELECT `title`, `description`, `image`, `date`, `author`
+  FROM `blog_data`
+  ORDER BY blog_data.date DESC
   LIMIT $limit;"
 );
 while ($row = mysqli_fetch_array($data)) {

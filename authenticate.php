@@ -17,7 +17,7 @@ for ($i = 0; $i < sizeof($data); $i++) {
 
 
 if ($error[0] == 'false' && $error[1] == 'false' && $error[2] == 'false') {
-  $query = "SELECT * FROM `blog_author_tb` WHERE  `Name` = ? OR `Email` = ?;";
+  $query = "SELECT * FROM `authors` WHERE  `name` = ? OR `email` = ?;";
   $stmt = mysqli_stmt_init($conn);
   $prep = mysqli_stmt_prepare($stmt, $query);
   mysqli_stmt_bind_param($stmt, "ss", $data[0], $data[1]);
@@ -44,45 +44,45 @@ if ($error[0] == 'false' && $error[1] == 'false' && $error[2] == 'false') {
 ?>
 
 <script>
-var submitStatus = "<?php echo $submit ?>";
-var inputs = document.querySelectorAll("input");
-if (submitStatus == true) {
+  var submitStatus = "<?php echo $submit ?>";
+  var inputs = document.querySelectorAll("input");
+  if (submitStatus == true) {
+    inputs.forEach(element => {
+      element.value = " ";
+      hideErr(element);
+    });
+    alert("Login Successful");
+    window.close("login.php");
+    window.open("index.php", "_blank");
+  }
   inputs.forEach(element => {
-    element.value = " ";
     hideErr(element);
   });
-  alert("Login Successful");
-  window.close("login.php");
-  window.open("display.php", "_blank");
-}
-inputs.forEach(element => {
-  hideErr(element);
-});
 
-var errorStr = "<?php
+  var errorStr = "<?php
                   for ($i = 0; $i < sizeof($error); $i++) {
                     echo $error[$i] . ' ';
                   }
                   ?>";
 
-var errorArr = errorStr.trim().split(' ');
-for (var i = 0; i < inputs.length; i++) {
-  if (errorArr[i] == 'true') {
-    showErr(inputs[i], "Required *")
+  var errorArr = errorStr.trim().split(' ');
+  for (var i = 0; i < inputs.length; i++) {
+    if (errorArr[i] == 'true') {
+      showErr(inputs[i], "Required *")
+    }
   }
-}
 
 
 
-function showErr(element, text) {
-  element.classList.add("error");
-  element.previousElementSibling.classList.add("error");
-  element.previousElementSibling.textContent = text + '';
-}
+  function showErr(element, text) {
+    element.classList.add("error");
+    element.previousElementSibling.classList.add("error");
+    element.previousElementSibling.textContent = text + '';
+  }
 
-function hideErr(element) {
-  element.classList.remove("error");
-  element.previousElementSibling.classList.remove("error");
-  element.previousElementSibling.textContent = '';
-}
+  function hideErr(element) {
+    element.classList.remove("error");
+    element.previousElementSibling.classList.remove("error");
+    element.previousElementSibling.textContent = '';
+  }
 </script>
