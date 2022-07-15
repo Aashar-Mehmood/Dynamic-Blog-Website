@@ -74,3 +74,44 @@ main {
     line-height: 1.5em;
   }
 }
+
+@media screen and (max-width: 768px) {
+  main {
+    padding: 50px;
+    aside {
+      width: 100%;
+      padding: 0;
+    }
+    section {
+      width: 100%;
+    }
+    & > div {
+      position: static;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  main {
+    padding: 20px;
+    section {
+      div {
+        padding: 35px 15px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 423px) {
+  main {
+    & > div {
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      #show_less {
+        margin-left: 0;
+        margin-top: 15px;
+      }
+    }
+  }
+}

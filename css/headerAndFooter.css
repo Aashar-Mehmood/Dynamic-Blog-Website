@@ -74,10 +74,82 @@ header nav a:hover::after {
           transform: scaleX(1);
 }
 
+header #openMenu,
+header #closeMenu {
+  display: none;
+}
+
 footer {
   background-color: #000;
   color: white;
   text-align: center;
   padding: 40px 0;
+}
+
+@media screen and (max-width: 1024px) {
+  header {
+    padding: 30px 45px;
+  }
+  header nav {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  header nav {
+    width: 55%;
+  }
+  footer {
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  header nav {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.6);
+    -webkit-transition: -webkit-transform 0.4s ease-in-out;
+    transition: -webkit-transform 0.4s ease-in-out;
+    transition: transform 0.4s ease-in-out;
+    transition: transform 0.4s ease-in-out, -webkit-transform 0.4s ease-in-out;
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  header nav a {
+    color: white;
+  }
+  header nav a:nth-child(1) {
+    position: absolute;
+    display: block;
+    font-size: 40px;
+    font-weight: bolder;
+    top: 15px;
+    right: 40px;
+  }
+  header nav.visible {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  header #openMenu,
+  header #closeMenu {
+    display: block;
+  }
+  footer {
+    padding: 16px;
+  }
 }
 /*# sourceMappingURL=headerAndFooter.css.map */
