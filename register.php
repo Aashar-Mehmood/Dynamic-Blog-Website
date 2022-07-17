@@ -30,7 +30,6 @@
       <input type="password" name="repeatPassword" id="pwd2">
       <div class="btns">
         <button id="addUser" name="register">Register</button>
-        <button id="login" class="secondary" type="button">Or Login</button>
       </div>
       <h2 id="message"></h2>
     </form>
