@@ -33,7 +33,7 @@ main {
   -ms-flex-pack: justify;
   justify-content: space-between;
   background-color: #d3d3d3e0;
-  padding: 100px 0 100px 50px;
+  padding: 60px 0 100px 50px;
 }
 
 main > h1,
@@ -89,9 +89,8 @@ main aside {
   width: 37%;
   padding: 0 30px;
 }
-
+main h1,
 main aside > h1 {
-  margin-top: 0;
   font-size: 2em;
 }
 

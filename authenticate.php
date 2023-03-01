@@ -23,16 +23,18 @@ if ($error[0] == 'false' && $error[1] == 'false' && $error[2] == 'false') {
   mysqli_stmt_bind_param($stmt, "ss", $data[0], $data[1]);
   $exec  = mysqli_stmt_execute($stmt);
   $result = mysqli_stmt_get_result($stmt);
-  if (!$result) {
-    echo "An error occured" . mysqli_stmt_error($stmt);
+  $rows = mysqli_num_rows($result);
+  if ($rows<1) {
+    echo "Invalid Credentials";
   } else {
     $row = mysqli_fetch_array($result);
     $hashedPwd = $row[3];
     $matchPwd = password_verify($data[2], $hashedPwd);
     if (!$matchPwd) {
-      echo "Wrong Password";
+      echo "Invalid Credentials";
     } else {
       session_start();
+      $_SESSION['author_id'] = $row[0];
       $_SESSION["name"] = $data[0];
       $_SESSION["email"] = $data[1];
       $submit = true;

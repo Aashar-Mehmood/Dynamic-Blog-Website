@@ -8,7 +8,8 @@
     <?php
     if (isset($_SESSION["name"])) {
       echo "<a href='logout.php'>Logout</a>";
-      echo "<a href='create.php'>Create Blog</a>";
+      echo "<a href='create.php'>Create</a>";
+      echo "<a href='manageBlogs.php'>Manage</a>";
     } else {
       echo "<a href='login.php'>Login</a>";
       echo "<a href='register.php'>Register</a>";

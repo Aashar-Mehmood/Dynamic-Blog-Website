@@ -63,7 +63,7 @@ session_start();
         echo "<aside>";
         echo "<h1>Trending Blogs</h1>";
         while ($row = mysqli_fetch_array($data2)) {
-          $shortPara = substr($row[1], 0, strlen($row[1]) / 3) . ' read more';
+          $shortPara = substr($row[1], 0, strlen($row[1]) / 3) . '...read more';
           echo "<div>";
           echo "<h1> $row[0] </h1>";
           echo "<p> $shortPara </p>";
