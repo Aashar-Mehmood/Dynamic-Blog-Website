@@ -106,6 +106,7 @@ $image = $data['image'];
                                     <textarea rows="6" class="form-control" name="desc"><?php echo "$description" ?></textarea>
                                 </div>
                                 <div class="mt-4">
+                                    <span class="text-danger" id="imageError"></span>
                                     <input class="form-control" type="file" accept="image/*" name="image" />
                                 </div>
 
@@ -135,6 +136,9 @@ $image = $data['image'];
     const prevImage = document.querySelector('.prev-image');
     const largeImage = document.getElementById('large-image');
     const close = document.getElementById('close');
+
+    const imageError = document.getElementById('imageError');
+
     prevImage.addEventListener('click', () => {
 
         largeImage.classList.toggle('open');
@@ -149,10 +153,24 @@ $image = $data['image'];
             e.preventDefault();
             var formData = new FormData(form);
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', './update.php', true);
+            xhr.open('POST', 'blog/update.php', true);
             xhr.onload = function() {
+                imageError.innerHTML = '';
                 if (xhr.status === 200) {
-                    alert(xhr.responseText);
+
+                    const messages = JSON.parse(xhr.response);
+                    messages.forEach(message => {
+                        if (message.imageError) {
+                            imageError.innerHTML = message.imageError;
+                        }
+                        if (message.newImagePath) {
+                            prevImage.setAttribute("src", message.newImagePath);
+                            largeImage.children[1].setAttribute("src", message.newImagePath);
+                        }
+                        if (message.update) {
+                            alert(message.update);
+                        }
+                    });
                 }
             };
             xhr.send(formData);
