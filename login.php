@@ -1,4 +1,11 @@
-<?php session_start(); ?>
+<?php
+session_start();
+if (isset($_SESSION['name']) || isset($_SESSION['email'])) {
+  echo "<script>alert('You are already logged in')</script>";
+  header("Refresh:0.2;url=./index.php");
+  exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

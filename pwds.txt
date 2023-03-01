@@ -1,0 +1,9 @@
+Admin
+name -> admin
+email -> admin@gmail.com
+password -> aasharKayani@Blog.com
+
+user
+name -> arbash
+email -> arbash@gmail.com
+password -> arbash

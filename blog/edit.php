@@ -30,10 +30,13 @@ $image = $data['image'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="../">
     <title>Update Blog</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <style>
+    .h-45 {
+        height: 45px;
+    }
+
     .prev-image {
         width: 60px;
         cursor: pointer;
@@ -107,7 +110,7 @@ $image = $data['image'];
                                 </div>
                                 <div class="mt-4">
                                     <span class="text-danger" id="imageError"></span>
-                                    <input class="form-control" type="file" accept="image/*" name="image" />
+                                    <input class="form-control h-45" type="file" accept="image/*" name="image" />
                                 </div>
 
                                 <div class="mt-4 d-flex flex-row justify-content-between col-10">

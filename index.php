@@ -9,6 +9,8 @@ session_start();
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <title>Aashar's Blog</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel='stylesheet' href='css/display.css'>
 </head>
 
@@ -19,7 +21,7 @@ session_start();
 
   $blogInfo = mysqli_query(
     $conn,
-    "SELECT `title`, `description`, `image`, `date`, `author`
+    "SELECT `title`, `description`, `image`, `date`, `author_id`
     FROM `blog_data`
     ORDER BY blog_data.date DESC
     LIMIT 2;"
@@ -45,10 +47,12 @@ session_start();
         while ($row = mysqli_fetch_assoc($blogInfo)) {
           $title = $row['title'];
           $desc = $row['description'];
-          $author = $row['author'];
+          $author_id = $row['author_id'];
+          $author_data = mysqli_query($conn, "SELECT `name` FROM authors WHERE id = $author_id");
+          $author = mysqli_fetch_assoc($author_data)["name"];
           $date = $row['date'];
           $image = $row["image"];
-          echo "<div class='container'>";
+          echo "<div class='cont'>";
           echo "<img src='$image' />";
           echo "<h1> $title </h1>";
           echo "<p> $desc </p>";
