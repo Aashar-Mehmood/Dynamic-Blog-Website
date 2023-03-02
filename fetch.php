@@ -1,6 +1,6 @@
 <?php
 include_once("includes/dbConnection.php");
-$limit = 2;
+$limit = isset($_POST['limit']) ? $_POST['limit'] : 2;
 
 $data = mysqli_query(
   $conn,

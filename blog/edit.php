@@ -50,6 +50,7 @@ $image = $data['image'];
         transform: translate(-50%, -50%) scale(0);
         width: 400px;
         height: 300px;
+        padding: 20px;
         background-color: #00000099;
         display: flex;
         flex-direction: column;
@@ -60,6 +61,7 @@ $image = $data['image'];
 
     #large-image img {
         width: 100%;
+        max-height: 100%;
     }
 
     #large-image.open {

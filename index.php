@@ -19,6 +19,10 @@ session_start();
   include_once("includes/header.php");
   include_once("includes/dbConnection.php");
 
+  $totalResult = mysqli_query($conn, "SELECT COUNT(*) as total_blogs FROM blog_data;");
+  $totalBlogs = mysqli_fetch_assoc($totalResult)["total_blogs"];
+
+
   $blogInfo = mysqli_query(
     $conn,
     "SELECT `title`, `description`, `image`, `date`, `author_id`
@@ -29,7 +33,7 @@ session_start();
   $data2 = mysqli_query(
     $conn,
     "SELECT `title`, `description`, `id` 
-    FROM `blog_data` LIMIT 6"
+    FROM `blog_data` LIMIT 4"
   );
 
   ?>
@@ -85,7 +89,11 @@ session_start();
 
 
       include_once("includes/footer.php");
+
       ?>
+      <script>
+        <?php echo "var totalBlogs = $totalBlogs" ?>
+      </script>
       <script src="js/jquery.min.js"></script>
       <script src="js/fetch.js"></script>
       <script src="js/fetchFullBlog.js"></script>
