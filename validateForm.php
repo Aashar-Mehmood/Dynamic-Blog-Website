@@ -46,16 +46,15 @@ if (
   if (!$submit) {
     echo "<script>alert('An Error occurred while registering')</script>";
   } else {
-    $result = mysqli_query($conn, "SELECT * FROM authors WHERE `name` = $data[0] AND `email` = $data[1];");
+    $result = mysqli_query($conn, "SELECT * FROM authors WHERE `name` = '$data[0]'AND `email` = '$data[1]';");
     $userData = mysqli_fetch_assoc($result);
     session_start();
     $_SESSION['author_id'] = $userData["id"];
     $_SESSION['name'] = $data[0];
     $_SESSION['email'] = $data[1];
-    
+    $_SESSION['is_admin'] = false;
 
     echo "<script>alert('You Registered Successfully')</script>";
-    header("Refresh:0; url=.index.php");
   }
 }
 
@@ -69,7 +68,8 @@ if (
       element.value = " ";
       hideErr(element);
     });
-    exit(0);
+    location.href = "./index.php";
+
   }
   inputs.forEach(element => {
     hideErr(element);

@@ -9,6 +9,7 @@ echo "</br>";
 $error = ['false', 'false', 'false'];
 
 $submit = false;
+$redirect = '';
 for ($i = 0; $i < sizeof($data); $i++) {
   if (empty($data[$i])) {
     $error[$i] = 'true';
@@ -37,8 +38,12 @@ if ($error[0] == 'false' && $error[1] == 'false' && $error[2] == 'false') {
       $_SESSION['author_id'] = $row['id'];
       $_SESSION["name"] = $data[0];
       $_SESSION["email"] = $data[1];
+      $redirect = 'index.php';
       if ($row['role'] == "admin") {
         $_SESSION['is_admin']  = true;
+        $redirect = 'admin/dashboard.php';
+      } else {
+        $_SESSION['is_admin'] = false;
       }
       $submit = true;
     }
@@ -50,6 +55,7 @@ if ($error[0] == 'false' && $error[1] == 'false' && $error[2] == 'false') {
 
 <script>
   var submitStatus = "<?php echo $submit ?>";
+  var redirect = "<?php echo $redirect ?>";
   var inputs = document.querySelectorAll("input");
   if (submitStatus == true) {
     inputs.forEach(element => {
@@ -58,7 +64,7 @@ if ($error[0] == 'false' && $error[1] == 'false' && $error[2] == 'false') {
     });
     alert("Login Successful");
     window.close("login.php");
-    window.open("index.php", "_blank");
+    window.open(redirect, "_blank");
   }
   inputs.forEach(element => {
     hideErr(element);

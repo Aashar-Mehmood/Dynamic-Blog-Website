@@ -6,14 +6,22 @@
     <a id="closeMenu">&times;</a>
     <a href="index.php">Home</a>
     <?php
-    if (isset($_SESSION["name"])) {
+    if (isset($_SESSION["is_admin"])) {
+      if ($_SESSION["is_admin"] == true) {
+
+        echo "<a href='admin/dashboard.php'>Dashboard</a>";
+        echo "<a href='admin/manageBlogs.php'>Blogs</a>";
+        echo "<a href='admin/manageUsers.php'>Users</a>";
+      } else if ($_SESSION["is_admin"] == false) {
+        echo "<a href='create.php'>Create</a>";
+        echo "<a href='manageBlogs.php'>Manage</a>";
+      }
       echo "<a href='logout.php'>Logout</a>";
-      echo "<a href='create.php'>Create</a>";
-      echo "<a href='manageBlogs.php'>Manage</a>";
     } else {
       echo "<a href='login.php'>Login</a>";
       echo "<a href='register.php'>Register</a>";
     }
+
     ?>
   </nav>
   <i class="fa fa-bars" id="openMenu"></i>

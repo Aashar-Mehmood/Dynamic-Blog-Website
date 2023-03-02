@@ -2,7 +2,8 @@
 session_start();
 if (!isset($_SESSION["name"])) {
     header("location:../login.php");
-    exit();
+} else if ($_SESSION['is_admin'] == true) {
+    header("location:../admin/dashboard.php");
 }
 include_once('../includes/dbConnection.php');
 $author_id = $_SESSION['author_id'];

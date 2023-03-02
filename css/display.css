@@ -107,8 +107,16 @@ main button {
   padding: 0.45em 0.75em;
   border-radius: 5px;
   border: none;
-  background: #5fabee;
+  background-color: #5fabee;
+  color: whitesmoke;
   cursor: pointer;
+  transition: transform 0.4s ease-in-out;
+}
+
+main button:hover,
+main button:focus {
+  transform: translateY(-4px);
+  box-shadow: 0 2px 6px 0px #5fabee;
 }
 
 main p {
