@@ -92,6 +92,7 @@ include_once('includes/dbConnection.php');
       xhr.onload = function() {
         if (xhr.status === 200) {
           const messages = JSON.parse(xhr.response);
+
           messages.forEach(message => {
             if (message.titleError) {
               titleError.innerHTML = message.titleError;
@@ -102,11 +103,13 @@ include_once('includes/dbConnection.php');
             if (message.imageError) {
               imgError.innerHTML = message.imageError;
             }
-            if (message.message) {
-              alert(message.message);
+            if (message.fail) {
+              alert(message.fail);
+            } else if (message.success) {
+              alert(message.success);
+              location.href = "./manageBlogs.php";
             }
           });
-          location.href = "./manageBlogs.php";
         }
       };
       xhr.send(formData);

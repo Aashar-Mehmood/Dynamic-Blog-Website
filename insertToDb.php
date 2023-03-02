@@ -54,9 +54,9 @@ if (sizeof($messages) > 0) {
   );
   print_r(mysqli_error($conn));
   if (!$inserted) {
-    array_push($messages, array("message" => "Unable to Create Blog"));
+    array_push($messages, array("fail" => "Unable to Create Blog"));
   } else {
-    array_push($messages, array("message" => "Blog Created Successfully"));
+    array_push($messages, array("success" => "Blog Created Successfully"));
   }
   echo json_encode($messages);
 }

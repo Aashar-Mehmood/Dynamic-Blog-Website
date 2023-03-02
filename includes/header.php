@@ -10,8 +10,8 @@
       if ($_SESSION["is_admin"] == true) {
 
         echo "<a href='admin/dashboard.php'>Dashboard</a>";
-        echo "<a href='admin/manageBlogs.php'>Blogs</a>";
-        echo "<a href='admin/manageUsers.php'>Users</a>";
+        echo "<a href='admin/blogs.php'>Blogs</a>";
+        echo "<a href='admin/users.php'>Users</a>";
       } else if ($_SESSION["is_admin"] == false) {
         echo "<a href='create.php'>Create</a>";
         echo "<a href='manageBlogs.php'>Manage</a>";

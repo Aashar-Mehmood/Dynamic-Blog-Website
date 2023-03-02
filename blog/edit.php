@@ -2,14 +2,19 @@
 session_start();
 if (!isset($_SESSION["name"])) {
     header("location:../login.php");
-} else if ($_SESSION['is_admin'] == true) {
-    header("location:../admin/dashboard.php");
 }
 include_once('../includes/dbConnection.php');
-$author_id = $_SESSION['author_id'];
+if (isset($_SESSION['author_id'])) {
+    $author_id = $_SESSION['author_id'];
+}
 $blog_id = $_GET['id'];
 
-$result = mysqli_query($conn, "SELECT * FROM blog_data WHERE id = $blog_id AND author_id = $author_id");
+if ($_SESSION['is_admin'] == true) {
+    $result = mysqli_query($conn, "SELECT * FROM blog_data WHERE id = $blog_id;");
+} else {
+    $result = mysqli_query($conn, "SELECT * FROM blog_data WHERE id = $blog_id AND author_id = $author_id");
+}
+
 if (mysqli_num_rows($result) < 1) {
     echo "<script>alert('Access Denied !');</script>";
     header("Refresh:1;url=../manageBlogs.php");
