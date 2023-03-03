@@ -25,9 +25,9 @@ session_start();
 
   $blogInfo = mysqli_query(
     $conn,
-    "SELECT `title`, `description`, `image`, `date`, `author_id`
+    "SELECT `title`, `description`, `image`, `date_created`, `author_id`
     FROM `blog_data`
-    ORDER BY blog_data.date DESC
+    ORDER BY blog_data.date_created DESC
     LIMIT 2;"
   );
   $data2 = mysqli_query(
@@ -54,7 +54,7 @@ session_start();
           $author_id = $row['author_id'];
           $author_data = mysqli_query($conn, "SELECT `name` FROM authors WHERE id = $author_id");
           $author = mysqli_fetch_assoc($author_data)["name"];
-          $date = $row['date'];
+          $date = $row['date_created'];
           $image = $row["image"];
           echo "<div class='cont'>";
           echo "<img src='$image' />";

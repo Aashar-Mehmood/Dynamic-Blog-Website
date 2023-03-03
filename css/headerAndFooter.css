@@ -54,6 +54,11 @@ header nav a {
   position: relative;
 }
 
+header nav a:hover {
+  text-decoration: underline;
+  color: rgb(32, 95, 255);
+}
+
 header #openMenu,
 header #closeMenu {
   display: none;

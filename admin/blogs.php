@@ -82,7 +82,7 @@ $result = mysqli_query($conn, "SELECT * FROM blog_data LIMIT $limit OFFSET $offs
                 <tr>
                    <td>' . $rows["id"] . '</td>
                    <td>' . $rows["title"] . '</td>
-                   <td>' . $rows["date"] . '</td>
+                   <td>' . $rows["date_created"] . '</td>
                    <td><a class="btn btn-primary px-4" href = "blog/edit.php?id=' . $rows["id"] . '">Edit<a/> </td>
                    <td>
                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal' . $rows["id"] . '">

@@ -5,7 +5,7 @@ include("includes/dbConnection.php");
 
 $data = mysqli_query(
   $conn,
-  "SELECT `title`, `description`, `image`, `date`, `author_id`
+  "SELECT `title`, `description`, `image`, `date_created`, `author_id`
   FROM `blog_data`
   WHERE blog_data.id = $blogId;"
 );
@@ -13,7 +13,7 @@ $row = mysqli_fetch_assoc($data);
 $title = $row['title'];
 $desc = $row['description'];
 $image = $row["image"];
-$date = $row['date'];
+$date = $row['date_created'];
 $author_id = $row['author_id'];
 $author_data = mysqli_query($conn, "SELECT `name` FROM authors WHERE id = $author_id");
 $author_name = mysqli_fetch_assoc($author_data)["name"];

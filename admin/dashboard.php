@@ -32,7 +32,11 @@ $last_year_users = $row['last_year_users'];
 $last_month_users = $row['last_month_users'];
 $last_week_users = $row['last_week_users'];
 
-$sql2 = "SELECT MONTH(date_joined) AS month_joined, COUNT(*) AS num_users FROM authors WHERE role != 'admin' AND YEAR(date_joined) = YEAR(DATE_SUB(NOW(), INTERVAL 1 YEAR)) GROUP BY MONTH(date_joined)";
+$sql2 = "SELECT MONTH(date_joined) AS month_joined, 
+        COUNT(*) AS num_users FROM authors 
+        WHERE role != 'admin' AND 
+        YEAR(date_joined) = YEAR(DATE_SUB(NOW(), INTERVAL 1 YEAR)) 
+        GROUP BY MONTH(date_joined)";
 $res = mysqli_query($conn, $sql2);
 
 // Save the results in an array
@@ -58,6 +62,26 @@ $total_blogs = $blogRow['total_blogs'];
 $last_year_blogs = $blogRow['last_year_blogs'];
 $last_month_blogs = $blogRow['last_month_blogs'];
 $last_week_blogs = $blogRow['last_week_blogs'];
+
+$last_year_blogs_result = mysqli_query(
+    $conn,
+    "SELECT MONTH(`date_created`) AS month, 
+    COUNT(*) AS num_blogs
+    FROM blog_data
+    WHERE YEAR(`date_created`) = YEAR(DATE_SUB(now(), INTERVAL 1 YEAR))
+    GROUP BY MONTH(`date_created`)
+    ORDER BY month;"
+);
+
+
+$blogs_arr = array();
+while ($last_year_blogs_row = mysqli_fetch_assoc($last_year_blogs_result)) {
+    array_push($blogs_arr, $last_year_blogs_row["num_blogs"]);
+}
+
+$blogs_created_json = json_encode($blogs_arr);
+
+echo "<script>var blogsCreated = $blogs_created_json;</script>";
 
 
 // Close connection
@@ -279,30 +303,52 @@ mysqli_close($conn);
             borderWidth: 1
         }],
 
+
     };
 
     // Create the chart
     var myChart = new Chart(ctx, {
         type: 'line',
-        data: chartData
+        data: chartData,
+        options: {
+            scales: {
+                y: {
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    min: 0
+                }
+            }
+        }
     });
 
-
+    var blogsData = blogsCreated.map(ele => Number(ele));
     var ctx2 = document.getElementById('blogsStatsChart').getContext('2d');
     var chartData2 = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
             label: 'Blogs Created',
-            data: [10, 20, 30, 20, 50, 80, 70, 80, 50, 30, 60, 30],
+            data: blogsData,
             backgroundColor: 'aliceblue',
             borderColor: 'blue',
             borderWidth: 1
         }],
 
+
     };
     var myChart2 = new Chart(ctx2, {
         type: 'line',
-        data: chartData2
+        data: chartData2,
+        options: {
+            scales: {
+                y: {
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    min: 0
+                }
+            }
+        }
     });
 </script>
 

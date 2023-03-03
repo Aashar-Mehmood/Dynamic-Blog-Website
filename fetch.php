@@ -4,9 +4,9 @@ $limit = isset($_POST['limit']) ? $_POST['limit'] : 2;
 
 $data = mysqli_query(
   $conn,
-  "SELECT `title`, `description`, `image`, `date`, `author_id`
+  "SELECT `title`, `description`, `image`, `date_created`, `author_id`
   FROM `blog_data`
-  ORDER BY blog_data.date DESC
+  ORDER BY blog_data.date_created DESC
   LIMIT $limit;"
 );
 
@@ -14,7 +14,7 @@ while ($row = mysqli_fetch_array($data)) {
   $title = $row['title'];
   $desc = $row['description'];
   $image = $row["image"];
-  $date = $row['date'];
+  $date = $row['date_created'];
   $author_id = $row['author_id'];
   $author_data = mysqli_query($conn, "SELECT `name` FROM authors WHERE id = $author_id");
   $author_name = mysqli_fetch_assoc($author_data)["name"];
