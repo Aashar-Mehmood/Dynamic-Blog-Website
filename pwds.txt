@@ -1,7 +1,7 @@
 Admin
 name -> admin
 email -> admin@gmail.com
-password -> aasharKayani@Blog.com
+password -> admin
 
 user
 name -> arbash
