@@ -9,12 +9,12 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] == false) {
 include_once("../includes/dbConnection.php");
 
 $name = $_SESSION['name'];
-$query = "SELECT id FROM blog_data";
+$query = "SELECT id FROM authors";
 $result1 = mysqli_query($conn, $query);
 
-$totalBlogs = mysqli_num_rows($result1);
-$blogsPerPage = 5;
-$totalPages =  ceil($totalBlogs / $blogsPerPage);
+$totalUsers = mysqli_num_rows($result1);
+$usersPerPage = 5;
+$totalPages =  ceil($totalUsers / $usersPerPage);
 if (isset($_GET['page'])) {
     if ($_GET['page'] > $totalPages) {
         $page = 1;
@@ -25,10 +25,10 @@ if (isset($_GET['page'])) {
 } else {
     $page = 1;
 }
-$limit = $blogsPerPage;
-$offset = ($page - 1) * $blogsPerPage;
+$limit = $usersPerPage;
+$offset = ($page - 1) * $usersPerPage;
 
-$result = mysqli_query($conn, "SELECT * FROM blog_data LIMIT $limit OFFSET $offset;");
+$result = mysqli_query($conn, "SELECT * FROM authors LIMIT $limit OFFSET $offset;");
 
 ?>
 <!DOCTYPE html>
@@ -39,7 +39,7 @@ $result = mysqli_query($conn, "SELECT * FROM blog_data LIMIT $limit OFFSET $offs
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="../">
-    <title>Manage All Blogs</title>
+    <title>Manage All Users</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <style>
@@ -62,7 +62,7 @@ $result = mysqli_query($conn, "SELECT * FROM blog_data LIMIT $limit OFFSET $offs
 
         <?php
         if (mysqli_num_rows($result) < 1) {
-            echo "<h3>No Blogs exist yet</h3>";
+            echo "<h3>No Users exist yet</h3>";
         } else {
 
             echo
@@ -71,10 +71,9 @@ $result = mysqli_query($conn, "SELECT * FROM blog_data LIMIT $limit OFFSET $offs
                 <thead class="thead-dark">
                     <tr>
                     <th scope="col">Id</th>
-                    <th class ="min-w-100" scope="col">Title</th>
-                    <th class ="min-w-100" scope="col">Author</th>
-                    <th class ="min-w-100" scope="col">Created At</th>
-                    <th scope="col">Edit</th>
+                    <th class ="min-w-100" scope="col">Name</th>
+                    <th class ="min-w-100" scope="col">Email</th>
+                    <th class ="min-w-100" scope="col">Date Joined</th>
                     <th scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -83,16 +82,12 @@ $result = mysqli_query($conn, "SELECT * FROM blog_data LIMIT $limit OFFSET $offs
         ?>
             <?php
             while ($rows = mysqli_fetch_assoc($result)) {
-                $authorId = $rows["author_id"];
-                $authorData = mysqli_query($conn, "SELECT `name` FROM authors WHERE id = $authorId");
-                $authorName =   mysqli_fetch_assoc($authorData)["name"];
                 echo '
                 <tr>
                    <td>' . $rows["id"] . '</td>
-                   <td>' . $rows["title"] . '</td>
-                   <td>' . $authorName . '</td>
-                   <td>' . $rows["date_created"] . '</td>
-                   <td><a class="btn btn-primary px-4" href = "blog/edit.php?id=' . $rows["id"] . '">Edit<a/> </td>
+                   <td>' . $rows["name"] . '</td>
+                   <td>' . $rows["email"]  . '</td>
+                   <td>' . $rows["date_joined"] . '</td>
                    <td>
                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal' . $rows["id"] . '">
                         Delete
@@ -111,14 +106,14 @@ $result = mysqli_query($conn, "SELECT * FROM blog_data LIMIT $limit OFFSET $offs
                         </button>
                       </div>
                       <div class="modal-body">
-                        Are you sure you want to delete the blog (' . $rows["title"] . ')?
+                        Are you sure you want to delete the user (' . $rows["name"] . ')?
                         This process can not be un-done!
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <form method="POST" class="deleteForm">
-                            <input type="submit" class="btn btn-danger" value = "Delete"/>
-                            <input type="hidden" name="blog_id" value="' . $rows["id"] . '"/>
+                        <form method="POST" action = "admin/deleteUser.php" class="deleteForm">
+                            <input  type="submit" class="btn btn-danger" value = "Delete"/>
+                            <input type="hidden" name="author_id" value="' . $rows["id"] . '"/>
                         </form>
                       </div>
                     </div>
@@ -143,7 +138,7 @@ $result = mysqli_query($conn, "SELECT * FROM blog_data LIMIT $limit OFFSET $offs
                     $nextPage = 0;
                     if ($page > 1) {
                         $prevPage = $page - 1;
-                        echo "<li class='page-item'><a class='page-link' href='admin/blogs.php?page=$prevPage'>Previous</a></li>";
+                        echo "<li class='page-item'><a class='page-link' href='admin/users.php?page=$prevPage'>Previous</a></li>";
                     } else {
                         $prevPage = 1;
                     }
@@ -153,14 +148,14 @@ $result = mysqli_query($conn, "SELECT * FROM blog_data LIMIT $limit OFFSET $offs
                         } else {
                             $cssClass = "page-item";
                         }
-                        echo "<li class='$cssClass'><a class='page-link' href='admin/blogs.php?page=$i'>$i</a></li>";
+                        echo "<li class='$cssClass'><a class='page-link' href='admin/users.php?page=$i'>$i</a></li>";
                     }
 
                     if ($page == $totalPages) {
                         $nextPage = $page;
                     } else {
                         $nextPage = $page + 1;
-                        echo "<li class='page-item'><a class='page-link' href='admin/blogs.php?page=$nextPage'>Next</a></li>";
+                        echo "<li class='page-item'><a class='page-link' href='admin/users.php?page=$nextPage'>Next</a></li>";
                     }
                     ?>
                 </ul>
@@ -173,24 +168,6 @@ $result = mysqli_query($conn, "SELECT * FROM blog_data LIMIT $limit OFFSET $offs
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var form = document.querySelector('.deleteForm');
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            var formData = new FormData(form);
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'blog/delete.php', true);
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    const message = xhr.responseText;
-                    alert(message);
-                    location.reload();
-                }
-            };
-            xhr.send(formData);
-        });
-    });
-</script>
+
 
 </html>
