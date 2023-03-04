@@ -39,7 +39,7 @@ session_start();
   ?>
   <main>
 
-    <section id='blog_section'>
+    <section>
       <?php
       if (mysqli_num_rows($blogInfo) < 1) {
         echo "<h1>No Blogs Published Yet</h1>";
@@ -47,7 +47,9 @@ session_start();
         echo "</section>";
         echo "</main>";
       } else {
+
         echo "<h1>Latest Blogs</h1>";
+        echo "<div id = 'blog_section'>";
         while ($row = mysqli_fetch_assoc($blogInfo)) {
           $title = $row['title'];
           $desc = $row['description'];
@@ -67,6 +69,12 @@ session_start();
           echo "<span>$date</span>";
           echo "</div>";
         }
+        echo "
+        </div>;
+        <div>
+          <button id='load_more'>Load More</button>
+          <button id='show_less'>Show Less</button>
+        </div>";
         echo "</section>";
         echo "<aside>";
         echo "<h1>Trending Blogs</h1>";
@@ -80,10 +88,7 @@ session_start();
         }
         echo "
     </aside>
-    <div>
-      <button id='load_more'>Load More</button>
-      <button id='show_less'>Show Less</button>
-    </div>
+    
   </main>";
       }
 

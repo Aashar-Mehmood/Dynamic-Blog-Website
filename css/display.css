@@ -69,7 +69,7 @@ main section img {
   max-width: 100%;
 }
 
-main section div {
+main section div.cont {
   margin-bottom: 100px;
   padding: 40px 50px;
   background-color: #fff;
@@ -80,6 +80,9 @@ main section p {
   width: 75%;
 }
 
+main section #show_less {
+  margin-left: 40px;
+}
 main section span {
   color: #5fabee;
   font-size: 1.2rem;
