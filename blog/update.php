@@ -2,14 +2,17 @@
 session_start();
 if (!isset($_SESSION["name"])) {
     header("location:../login.php");
-} else if ($_SESSION['is_admin'] == true) {
-    header("location:../admin/dashboard.php");
 }
 
 
 
+
+
 include_once('../includes/dbConnection.php');
-$author_id = $_SESSION['author_id'];
+if (isset($_SESSION['author_id'])) {
+
+    $author_id = $_SESSION['author_id'];
+}
 $blog_id = $_POST['blog_id'];
 
 $title = mysqli_real_escape_string($conn, $_POST['title']);
@@ -63,7 +66,11 @@ if (empty($title) && empty($desc) && empty($_FILES['image']['name'])) {
     }
 
     $query = rtrim($query, ',');
-    $query .= " WHERE id = $blog_id AND author_id = $author_id; ";
+    if ($_SESSION['is_admin'] == true) {
+        $query .= " WHERE id = $blog_id; ";
+    } else {
+        $query .= " WHERE id = $blog_id AND author_id = $author_id; ";
+    }
     $result = mysqli_query($conn, $query);
 
     // check if the query was successful
