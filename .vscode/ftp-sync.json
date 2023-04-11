@@ -1,0 +1,30 @@
+{
+  "remotePath": "./htdocs",
+  "host": "ftpupload.net",
+  "username": "epiz_33718098",
+  "password": "a1nI2c37Ji0TuO",
+  "port": 21,
+  "secure": false,
+  "protocol": "ftp",
+  "uploadOnSave": false,
+  "passive": false,
+  "debug": false,
+  "privateKeyPath": null,
+  "passphrase": null,
+  "agent": null,
+  "allow": [],
+  "ignore": ["\\.vscode", "\\.git", "\\.DS_Store"],
+  "generatedFiles": {
+    "uploadOnSave": false,
+    "extensionsToInclude": [
+      ".php",
+      ".js",
+      ".css",
+      ".png",
+      ".jpg",
+      ".jpeg",
+      ".svg"
+    ],
+    "path": ""
+  }
+}
